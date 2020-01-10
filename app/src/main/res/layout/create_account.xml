@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/E-Mail"
+        android:id="@+id/EMail"
         android:layout_width="298dp"
         android:layout_height="47dp"
         android:layout_marginTop="188dp"
@@ -34,10 +34,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/E-Mail" />
+        app:layout_constraintTop_toBottomOf="@+id/EMail" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/CMDP"
         android:layout_width="298dp"
         android:layout_height="47dp"
         android:layout_marginTop="24dp"
@@ -57,7 +57,7 @@
         android:text="Confirmer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/CMDP" />
 
     <TextView
         android:id="@+id/textView8"
@@ -70,4 +70,6 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
