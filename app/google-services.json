@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "321144274645",
+    "firebase_url": "https://x-factories.firebaseio.com",
+    "project_id": "x-factories",
+    "storage_bucket": "x-factories.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321144274645:android:45aca18ea53d3409d06c5c",
+        "android_client_info": {
+          "package_name": "com.project.x_factories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321144274645-fscbkgoe4v95nnig91911rlvq9nb4o57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKplqDB5KXnrnJCv69rUAUMG2dtMlPk0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321144274645-fscbkgoe4v95nnig91911rlvq9nb4o57.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
