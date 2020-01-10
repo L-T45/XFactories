@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.project.x_factories.R;
 import com.project.x_factories.ui.accueil.AccueilActivity;
+import com.project.x_factories.ui.create.Create_Account;
 import com.project.x_factories.ui.login.LoginViewModel;
 import com.project.x_factories.ui.login.LoginViewModelFactory;
 
@@ -43,10 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI (FirebaseUser account){
 
         if(account != null){
-            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Vous êtes bien connectés",Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, AccueilActivity.class));
         }else {
-            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Vous n'êtes pas connectés ",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -146,8 +147,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 //loginViewModel.login();
-                        call(usernameEditText.getText().toString(),
-                                passwordEditText.getText().toString());
+                call(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());
 
             }
         });
@@ -190,5 +191,7 @@ public class LoginActivity extends AppCompatActivity {
 
         });
     }
-
+    public void button2 (View v){
+        startActivity(new Intent(this, Create_Account.class));
+    }
 }
