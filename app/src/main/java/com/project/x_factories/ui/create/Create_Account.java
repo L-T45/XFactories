@@ -22,7 +22,7 @@ import com.project.x_factories.ui.login.LoginActivity;
 
 public class Create_Account extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
