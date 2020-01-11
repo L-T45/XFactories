@@ -18,22 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.project.x_factories.R;
 import com.project.x_factories.ui.accueil.AccueilActivity;
+import com.project.x_factories.ui.login.LoginActivity;
 
 public class Create_Account extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
-    private void updateUI (FirebaseUser account){
-
-        if(account != null){
-            Toast.makeText(this,"U Signed In successfully",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, AccueilActivity.class));
-        }else {
-            Toast.makeText(this,"U Didnt signed in",Toast.LENGTH_LONG).show();
-        }
-    }
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
@@ -47,29 +39,33 @@ public class Create_Account extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 call2(usernameEditText2.getText().toString(),
-                        passwordEditText2.getText().toString());
+                        passwordEditText2.getText().toString(),
+                        passwordEditText3.getText().toString());
+
             }
         });
     }
-    public void call2(String email2, String password2){
+    public void call2(String email2, String password2, String password3){
+        if (password2.equals(password3)){
     mAuth.createUserWithEmailAndPassword(email2, password2)
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
         @Override
         public void onComplete(@NonNull Task<AuthResult> task) {
-            if (task.isSuccessful()) {
-                // Sign up success, update UI with the signed-in user's information
-                Log.d("TAG", "createUserWithEmail:success");
-                FirebaseUser user = mAuth.getCurrentUser();
-                updateUI(user);
-            } else {
-                // If sign up fails, display a message to the user.
-                Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                Toast.makeText(Create_Account.this, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show();
-                updateUI(null);
+                if (task.isSuccessful()) {
+                    // Sign up success, update UI with the signed-in user's information
+                    Log.d("TAG", "createUserWithEmail:success");
+                    Toast.makeText(Create_Account.this, "Votre compte à bien été créé",
+                            Toast.LENGTH_SHORT).show();
+
+                } else {
+                    // If sign up fails, display a message to the user.
+                    Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(Create_Account.this, "Echec de la création du compte",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
 
             // ...
-        }
+
     });
-}}
+}}}
