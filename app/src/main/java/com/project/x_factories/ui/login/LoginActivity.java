@@ -110,8 +110,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Complete and destroy login activity once successful
                 finish();
+
             }
         });
+
 
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
