@@ -17,7 +17,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.project.x_factories.R;
-import com.project.x_factories.ui.accueil.AccueilActivity;
 import com.project.x_factories.ui.login.LoginActivity;
 
 public class Create_Account extends AppCompatActivity {

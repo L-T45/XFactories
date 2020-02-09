@@ -31,7 +31,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.project.x_factories.R;
-import com.project.x_factories.ui.accueil.AccueilActivity;
+import com.project.x_factories.Template;
+import com.project.x_factories.ui.home.HomeViewModel;
 import com.project.x_factories.ui.create.Create_Account;
 import com.project.x_factories.ui.login.LoginViewModel;
 import com.project.x_factories.ui.login.LoginViewModelFactory;
@@ -45,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(account != null){
             Toast.makeText(this,"Vous êtes bien connectés",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, AccueilActivity.class));
+            //lier le template=page home pour l'autre partie (autre visu de l'app) avec login
+            startActivity(new Intent(this, Template.class));
         }else {
             Toast.makeText(this,"Vous n'êtes pas connectés ",Toast.LENGTH_LONG).show();
         }
