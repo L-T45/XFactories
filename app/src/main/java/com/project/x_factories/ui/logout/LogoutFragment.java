@@ -1,4 +1,4 @@
-package com.project.x_factories.ui.send;
+package com.project.x_factories.ui.logout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,23 +14,23 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.project.x_factories.R;
 
-public class SendFragment extends Fragment {
+public class LogoutFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private LogoutViewModel logoutViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+
+        logoutViewModel =
+                ViewModelProviders.of(this).get(LogoutViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_logout, container, false);
+        final TextView textView = root.findViewById(R.id.text_logout);
+        logoutViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-
-
             }
+
         });
         return root;
     }

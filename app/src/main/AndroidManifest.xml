@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        //lier le template=page home pour l'autre partie (autre visu de l'app) avec login
+        <!--lier le template=page home pour l'autre partie (autre visu de l'app) avec login -->
         <activity android:name=".Template"
             android:label="@string/title_activity_template"
             android:theme="@style/AppTheme.NoActionBar"/>
