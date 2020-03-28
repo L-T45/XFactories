@@ -68,7 +68,7 @@ public class Template extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-    public void nav_send (View v){
+    public void nav_logout (View v){
         startActivity(new Intent(this , LoginActivity.class));
     }
 }

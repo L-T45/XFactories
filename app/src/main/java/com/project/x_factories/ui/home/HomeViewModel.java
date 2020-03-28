@@ -10,10 +10,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("\nBonjour et bienvenu sur l'application XFactories, " +
-                "votre application de Facture et Devis. " +
-                "\n\n\n Pour commencer, cliquez sur les 3 traits en haut à gauche " +
-                "pour acceder au menu.");
+        mText.setValue("Informations de votre entreprise");
     }
 
     public LiveData<String> getText() {
