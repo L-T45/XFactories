@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.project.x_factories.R;
 import com.project.x_factories.data.user.Entreprise;
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
     private HomeViewModel homeViewModel;
     private DatabaseReference mDatabase;
+    private long count;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -111,6 +114,7 @@ public class HomeFragment extends Fragment {
                     Log.d("infos"," "+Tel.getText().toString()+ entreprise.getTel());*/
                 }
         });
+
         // Permet de verifier si la table souhaité n'existe pas déjà avant de la créer
         // Si on ne fait pas cela, ça rentre en comflit avec les informations a update lors de
         // l'envoie du formulaire et la base de donnée ne prends pas en compte les nouvelles informations
@@ -120,7 +124,8 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Permet de créer les informations nécéssaires à mettre dans la base de données si la table n'est pas encore créé
                 if(!dataSnapshot.child("Clients").exists()) {
-                    writeNewClient(mAuth.getUid(),"clientname", "clientfirstname", "clientadresse","clienttel");
+                    count = dataSnapshot.child("Clients").getChildrenCount()+1;
+                    writeNewClient(count,mAuth.getUid(),"clientname", "clientfirstname", "clientadresse","clienttel");
                 }
                 if (!dataSnapshot.child("Entreprise").exists()) {
                     writeNewEntreprise(mAuth.getUid(),"adresse", "name", "siret", "tel");
@@ -133,14 +138,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         return root;
     }
 
     // Permet d'inclure un client dans la base de donnée
-    private void writeNewClient(String userId, String clientname, String clientfirstname, String clientadresse, String clienttel) {
+    private void writeNewClient(long count, String userId,  String clientname, String clientfirstname, String clientadresse, String clienttel) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Client client = new Client(clientname, clientfirstname, clientadresse, clienttel);
-        mDatabase.child(userId).child("Clients").setValue(client);
+        Client client = new Client( clientname, clientfirstname, clientadresse, clienttel);
+        mDatabase.child(userId).child("Clients").setValue(""+count);  mDatabase.child(userId).child("Clients").child(""+count).setValue(client);
     }
     // Permet d'inclure une entreprise dans la base de donnée
     private void writeNewEntreprise(String userId,  String adresse, String name, String siret, String tel) {
