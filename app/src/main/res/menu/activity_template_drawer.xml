@@ -9,7 +9,7 @@
             android:icon="@android:drawable/ic_dialog_info"
             android:title="Mon entreprise" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_clients"
             android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="Mes clients" />
         <item

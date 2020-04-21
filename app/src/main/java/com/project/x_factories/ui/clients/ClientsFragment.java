@@ -1,4 +1,4 @@
-package com.project.x_factories.ui.gallery;
+package com.project.x_factories.ui.clients;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.project.x_factories.R;
 
-public class GalleryFragment extends Fragment {
+public class ClientsFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ClientsViewModel clientsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+        clientsViewModel =
+                ViewModelProviders.of(this).get(ClientsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_clients, container, false);
+        final TextView textView = root.findViewById(R.id.text_clients);
+        clientsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
