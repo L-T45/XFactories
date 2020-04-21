@@ -16,9 +16,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.ValueEventListener;
 import com.project.x_factories.R;
 import com.project.x_factories.data.user.Entreprise;
 import com.project.x_factories.data.user.Client;
@@ -84,31 +87,55 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Bouton de Submit du formulaire
+        // Bouton de Submit du formulaire pour mettre à jour les informations
+        // de l'entreprise dans la base de donnée de l'utilisateur
         Button boutton = root.findViewById(R.id.button);
         boutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                    writeNewEntreprise(mAuth.getUid(),"adresse", "name", "siret", "tel");
+                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                    //writeNewEntreprise(mAuth.getUid(),"adresse", "name", "siret", "tel");
                     Entreprise entreprise = new Entreprise(
                             Adresse.getText().toString(),
                             Name.getText().toString(),
                             Siret.getText().toString(),
                             Tel.getText().toString());
-                    Map<String, Object> childUpdates = new HashMap<>();
-                    childUpdates.put(mAuth.getCurrentUser().getUid()+"Entrprise", entreprise);
+                    Map<String, Object> entrepriseValues = entreprise.toMap();
+                    HashMap<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put(mAuth.getCurrentUser().getUid()+"/Entreprise", entrepriseValues);
                     mDatabase.updateChildren(childUpdates);
+
+                    /*Log.d("infos"," "+childUpdates);
                     Log.d("infos"," "+Adresse.getText().toString()+ entreprise.getAdresse());
                     Log.d("infos"," "+Name.getText().toString()+ entreprise.getName());
                     Log.d("infos"," "+Siret.getText().toString()+ entreprise.getSiret());
-                    Log.d("infos"," "+Tel.getText().toString()+ entreprise.getTel());
+                    Log.d("infos"," "+Tel.getText().toString()+ entreprise.getTel());*/
                 }
         });
+        // Permet de verifier si la table souhaité n'existe pas déjà avant de la créer
+        // Si on ne fait pas cela, ça rentre en comflit avec les informations a update lors de
+        // l'envoie du formulaire et la base de donnée ne prends pas en compte les nouvelles informations
+        mDatabase = FirebaseDatabase.getInstance().getReference("/"+mAuth.getUid());
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Permet de créer les informations nécéssaires à mettre dans la base de données si la table n'est pas encore créé
+                if(!dataSnapshot.child("Clients").exists()) {
+                    writeNewClient(mAuth.getUid(),"clientname", "clientfirstname", "clientadresse","clienttel");
+                }
+                if (!dataSnapshot.child("Entreprise").exists()) {
+                    writeNewEntreprise(mAuth.getUid(),"adresse", "name", "siret", "tel");
+                }
+            }
 
-        // Permet de créer les informations nécéssaires à mettre dans la base de données
-        writeNewClient(mAuth.getUid(),"clientname", "clientfirstname", "clientadresse","clienttel");
-        writeNewEntreprise(mAuth.getUid(),"adresse", "name", "siret", "tel");
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         return root;
     }
+
     // Permet d'inclure un client dans la base de donnée
     private void writeNewClient(String userId, String clientname, String clientfirstname, String clientadresse, String clienttel) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
