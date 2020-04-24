@@ -13,7 +13,7 @@
             android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="Mes clients" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_factures"
             android:icon="?android:attr/actionModeFindDrawable"
             android:title="Facture / Devis" />
         <item

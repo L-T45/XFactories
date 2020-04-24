@@ -19,7 +19,7 @@
 
     <string name="menu_home">Mon entreprise</string>
     <string name="menu_clients">Mes clients</string>
-    <string name="menu_slideshow">Facture / Devis</string>
+    <string name="menu_factures">Facture / Devis</string>
     <string name="menu_tools">Mes Factures et Devis</string>
     <string name="menu_logout">Déconnexion</string>
 </resources>

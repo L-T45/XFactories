@@ -1,4 +1,4 @@
-package com.project.x_factories.ui.slideshow;
+package com.project.x_factories.ui.facturedevis;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.project.x_factories.R;
 
-public class SlideshowFragment extends Fragment {
+public class FacturesFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private FacturesViewModel facturesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(this, new Observer<String>() {
+        facturesViewModel =
+                ViewModelProviders.of(this).get(FacturesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_factures, container, false);
+        final TextView textView = root.findViewById(R.id.text_factures);
+        facturesViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
